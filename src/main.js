@@ -3,6 +3,19 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+//重置css样式
+import 'normalize.css/normalize.css'
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+
+
+
+
+
+Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 
 new Vue({
