@@ -29,22 +29,31 @@ Vue.directive('hasPerm', {
   inserted: function (el, binding) {
     var perm = binding.value;
 
-    let flag = true;
+    let flag = false;
     if (perm && perm instanceof Array && perm.length > 0) {
 
 
-      perm.forEach(item => {
-        flag &= JSON.parse(localStorage.getItem("perm")).some(sysMenu => {
-          console.log(sysMenu.perms);
-          console.log(item);
+      var permElement = perm[0];
 
-          console.log("----------------");
-          sysMenu.perms== item
-        })
+      var parse = JSON.parse(localStorage.getItem("perm"));
+      parse.forEach(item => {
+        if (item.perms == permElement) {
+          flag = true;
+        }
+
       });
 
-      if(!flag){
-        console.log(flag);
+      // perm.forEach(item => {
+      //   flag &= JSON.parse(localStorage.getItem("perm")).some(sysMenu => {
+      //     console.log(sysMenu.perms);
+      //     console.log(item);
+      //
+      //     console.log("----------------");
+      //     sysMenu.perms== item
+      //   })
+      // });
+
+      if (!flag) {
         el.remove();
       }
     }
