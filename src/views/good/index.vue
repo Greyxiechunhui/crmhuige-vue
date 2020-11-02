@@ -2,7 +2,7 @@
   <div class="category-wrapper">
 
     <div class="execute-box">
-      <el-button size="mini" type="success" @click="createDialog=true">添加</el-button>
+      <el-button size="mini" type="success" @click="createDialog=true" v-has-perm="['base:good:add']">添加</el-button>
     </div>
 
     <el-table
@@ -116,8 +116,8 @@
         align="center"
         label="操作">
         <template v-slot="obj">
-          <el-button type="warning" @click="createDialog=true,findById(obj.row.goodCode)" size="mini">修改</el-button>
-          <el-button type="danger" @click="deleteDialog=true,id=obj.row.goodCode" size="mini">删除</el-button>
+          <el-button type="warning" @click="createDialog=true,findById(obj.row.goodCode)" size="mini" v-has-perm="['base:good:edit']">修改</el-button>
+          <el-button type="danger" @click="deleteDialog=true,id=obj.row.goodCode" size="mini" v-has-perm="['base:good:delete']">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

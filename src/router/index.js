@@ -57,6 +57,10 @@ const routes = [
       {
         path:"menu",
         component:()=>import("../views/menu/index.vue")
+      },
+      {
+        path:"index",
+        component:()=>import("../views/index/index.vue")
       }
     ]
   }

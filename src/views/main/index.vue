@@ -22,60 +22,28 @@
         <el-scrollbar>
           <el-menu
             default-active="2"
-            unique-opened="true"
             class="el-menu-vertical-demo"
             router
           >
-            <el-menu-item index="2">
-              <i class="el-icon-menu"></i>
-              <span slot="title">系统首页</span>
-            </el-menu-item>
 
-            <el-submenu index="base">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>基础数据</span>
-              </template>
-              <el-menu-item index="/main/good">
-                <i class="el-icon-menu"></i>
-                <span slot="title">商品管理</span>
-              </el-menu-item>
-              <el-menu-item index="/main/category">
-                <i class="el-icon-menu"></i>
-                <span slot="title">分类管理</span>
-              </el-menu-item>
-              <el-menu-item index="/main/customer">
-                <i class="el-icon-menu"></i>
-                <span slot="title">客户管理</span>
-              </el-menu-item>
-              <el-menu-item index="/main/supplier">
-                <i class="el-icon-menu"></i>
-                <span slot="title">运营商管理</span>
-              </el-menu-item>
-              <el-menu-item index="/main/unit">
-                <i class="el-icon-menu"></i>
-                <span slot="title">单位管理</span>
-              </el-menu-item>
-            </el-submenu>
+            <huige-item v-for="(item,index) in routerList" :key="index" :item="item"/>
+            <!--<el-menu-item :index="item.path" v-for="(item,index) in routerList" :key="index"-->
+                          <!--v-if="item.children==null||item.children.length==0">-->
+              <!--<e-icon :icon-name="item.icon"/>-->
+              <!--<span slot="title">{{item.menuName}}}</span>-->
+            <!--</el-menu-item>-->
 
-            <el-submenu index="system">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>系统管理</span>
-              </template>
-              <el-menu-item index="/main/user">
-                <i class="el-icon-menu"></i>
-                <span slot="title">用户管理</span>
-              </el-menu-item>
-              <el-menu-item index="/main/role">
-                <i class="el-icon-menu"></i>
-                <span slot="title">角色管理</span>
-              </el-menu-item>
-              <el-menu-item index="/main/menu">
-                <i class="el-icon-menu"></i>
-                <span slot="title">权限管理</span>
-              </el-menu-item>
-            </el-submenu>
+            <!--<el-submenu :index="item.path" v-for="(item,index) in routerList"-->
+                        <!--:key="index" v-if="item.children!=null&&item.children.length>0">-->
+              <!--<template slot="title">-->
+                <!--<e-icon :icon-name="item.icon"/>-->
+                <!--<span slot="title">{{item.menuName}}}</span>-->
+              <!--</template>-->
+              <!--<el-menu-item :index="item1.path" v-for="(item1,index) in item.children" :key="index">-->
+                <!--<e-icon :icon-name="item1.icon"/>-->
+                <!--<span slot="title">{{item1.menuName}}}</span>-->
+              <!--</el-menu-item>-->
+            <!--</el-submenu>-->
 
 
           </el-menu>
@@ -103,8 +71,19 @@
 </template>
 
 <script>
+  import huigeItem from '../../components/huigeItem'
   export default {
-    name: "index"
+    name: "index",
+    components: {huigeItem},
+    comments:{huigeItem},
+    created() {
+      this.routerList = JSON.parse(localStorage.getItem("router"));
+    },
+    data() {
+      return {
+        routerList: []
+      }
+    }
   }
 </script>
 
@@ -132,7 +111,7 @@
       height: calc(100% - 60px);
 
       /*.el-scrollbar__view,.el-menu{*/
-        /*height: 100%;*/
+      /*height: 100%;*/
       /*}*/
     }
 
@@ -159,7 +138,7 @@
     background-color: #eee;
     color: #333;
     padding: 10px;
-    .main-box{
+    .main-box {
       width: 100%;
       background-color: white;
       padding: 20px;

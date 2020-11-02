@@ -43,15 +43,7 @@
       </el-table-column>
     </el-table>
 
-    <el-pagination
-      style="text-align: right;margin-top: 20px"
-      background
-      layout="prev, pager, next"
-      :current-page="currentPage"
-      :page-size="pageSize"
-      @current-change="pageChangeHandler"
-      :total="total">
-    </el-pagination>
+
 
     <!--新建修改-->
     <el-dialog
